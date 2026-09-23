@@ -2,6 +2,7 @@ package dev.tobiasbieber.mcmanager.core;
 
 import dev.tobiasbieber.mcmanager.io.PathManager;
 import dev.tobiasbieber.mcmanager.service.Service;
+import dev.tobiasbieber.mcmanager.ui.SceneManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +22,8 @@ public class AppContext {
 
     // manager classes
     private PathManager pathManager;
+    private LangManager langManager;
+    private SceneManager sceneManager;
 
     private AppContext() {
         this.serviceRegistry = new HashMap<>();
@@ -48,5 +51,19 @@ public class AppContext {
             pathManager = new PathManager();
         }
         return pathManager;
+    }
+
+    public LangManager getLangManager() {
+        if (langManager == null) {
+            langManager = new LangManager();
+        }
+        return langManager;
+    }
+
+    public SceneManager getSceneManager() {
+        if (sceneManager == null) {
+            sceneManager = new SceneManager();
+        }
+        return sceneManager;
     }
 }
