@@ -28,8 +28,9 @@ public class WorldService implements Service {
         worlds = worldStorage.load();
     }
 
+    // returns a copy of the world list
     public List<World> getWorlds() {
-        return worlds;
+        return new ArrayList<>(worlds);
     }
 
     public void deleteWorld(World world) {

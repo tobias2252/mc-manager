@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+// manages language property files
 public class LangManager {
 
     private static final Logger log = LoggerFactory.getLogger(LangManager.class);

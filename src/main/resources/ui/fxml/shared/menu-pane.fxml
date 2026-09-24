@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.shared.MenuPane"
+      stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css"
+      styleClass="darker-background"
+      spacing="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <ToggleButton fx:id="worldButton"
+                  text="%menuPane.worldButton"
+                  prefWidth="200"/>
+
+    <ToggleButton fx:id="resourcePackButton"
+                  text="%menuPane.resourcePackButton"
+                  prefWidth="200"/>
+
+    <ToggleButton fx:id="shaderPackButton"
+                  text="%menuPane.shaderPackButton"
+                  prefWidth="200"/>
+
+    <ToggleButton fx:id="modButton"
+                  text="%menuPane.modButton"
+                  prefWidth="200"/>
+
+    <ToggleButton fx:id="settingsButton"
+                  text="%menuPane.settingsButton"
+                  prefWidth="200"/>
+
+</VBox>

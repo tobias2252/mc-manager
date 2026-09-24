@@ -1,6 +1,12 @@
 package dev.tobiasbieber.mcmanager.ui;
 
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseUI;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ModPane;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ResourcePackPane;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ShaderPackPane;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.WorldPane;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.other.SettingsPane;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.shared.MenuPane;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -18,10 +24,36 @@ public class SceneManager {
     private Stage stage;
     private BaseUI<?, ?> currentUI;
 
+    // shared ui objects
+    public MenuPane.UI menuPaneUI;
+
+    // entity ui objects
+    public WorldPane.UI worldPaneUI;
+    public ModPane.UI modPaneUI;
+    public ResourcePackPane.UI resourcePackPaneUI;
+    public ShaderPackPane.UI shaderPackPaneUI;
+
+    // other ui objects
+    public SettingsPane.UI settingsPaneUI;
+
     public SceneManager() {
         rootPane = new BorderPane();
         mainPane = new StackPane();
 
+        // menu pane
+        menuPaneUI = new MenuPane.UI();
+        rootPane.setLeft(menuPaneUI.getRoot());
+
+        // entity ui objects
+        worldPaneUI = new WorldPane.UI();
+        modPaneUI = new ModPane.UI();
+        resourcePackPaneUI = new ResourcePackPane.UI();
+        shaderPackPaneUI = new ShaderPackPane.UI();
+
+        // other ui objects
+        settingsPaneUI = new SettingsPane.UI();
+
+        showUI(worldPaneUI, WorldPane.class); // world pane is shown first
         rootPane.setCenter(mainPane);
     }
 
