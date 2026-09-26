@@ -7,7 +7,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.shared.MenuPane"
       stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css"
-      styleClass="darker-background"
+      styleClass="menu-background"
       spacing="10">
 
     <padding>
@@ -15,22 +15,27 @@
     </padding>
 
     <ToggleButton fx:id="worldButton"
+                  styleClass="primary-toggle-button"
                   text="%menuPane.worldButton"
                   prefWidth="200"/>
 
+    <ToggleButton fx:id="modButton"
+                  styleClass="primary-toggle-button"
+                  text="%menuPane.modButton"
+                  prefWidth="200"/>
+
     <ToggleButton fx:id="resourcePackButton"
+                  styleClass="primary-toggle-button"
                   text="%menuPane.resourcePackButton"
                   prefWidth="200"/>
 
     <ToggleButton fx:id="shaderPackButton"
+                  styleClass="primary-toggle-button"
                   text="%menuPane.shaderPackButton"
                   prefWidth="200"/>
 
-    <ToggleButton fx:id="modButton"
-                  text="%menuPane.modButton"
-                  prefWidth="200"/>
-
     <ToggleButton fx:id="settingsButton"
+                  styleClass="primary-toggle-button"
                   text="%menuPane.settingsButton"
                   prefWidth="200"/>
 

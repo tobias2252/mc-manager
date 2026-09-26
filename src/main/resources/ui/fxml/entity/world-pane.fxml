@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import dev.tobiasbieber.mcmanager.ui.view.entity.WorldListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.WorldPane"
-            stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css">
+            stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css"
+            styleClass="default-background">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <HBox spacing="10">
+
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+
+            <Button fx:id="clearButton"
+                    text="%worldPane.clearButton"
+                    prefWidth="150"/>
+
+            <TextField fx:id="searchField"
+                       promptText="%worldPane.searchField"
+                       HBox.hgrow="ALWAYS"
+                       maxWidth="Infinity"/>
+
+            <Button fx:id="reloadButton"
+                    text="%worldPane.reloadButton"
+                    minWidth="150"
+                    prefWidth="150"/>
+
+        </HBox>
+    </top>
+
+    <right>
+        <VBox spacing="10">
+
+            <padding>
+                <Insets left="10"/>
+            </padding>
+
+            <Button fx:id="detailsButton"
+                    text="%worldPane.detailsButton"
+                    prefWidth="150"/>
+
+            <Button fx:id="importButton"
+                    text="%worldPane.importButton"
+                    prefWidth="150"/>
+
+            <Button fx:id="exportButton"
+                    text="%worldPane.exportButton"
+                    prefWidth="150"/>
+
+            <Button fx:id="deleteButton"
+                    text="%worldPane.deleteButton"
+                    prefWidth="150"/>
+
+        </VBox>
+    </right>
 
     <center>
-        <Label text="WorldPane"/>
+        <WorldListView fx:id="worldListView"/>
     </center>
 
 </BorderPane>

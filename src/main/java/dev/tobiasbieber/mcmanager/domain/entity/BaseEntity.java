@@ -19,4 +19,8 @@ public abstract class BaseEntity {
     public void setPath(Path path) {
         this.path = path;
     }
+
+    public String getFilterText() {
+        return null;
+    }
 }

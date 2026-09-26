@@ -61,7 +61,7 @@ public class SceneManager {
     // executes the afterShow and beforeShow methods
     public void showUI(BaseUI<?, ?> ui, Class<?> uiClass) {
         if (!ui.equals(currentUI)) {
-            log.info("Showing UI: {}", uiClass.getSimpleName());
+            log.debug("Showing UI: {}", uiClass.getSimpleName());
             if (currentUI != null) {
                 currentUI.getController().afterShow();
             }

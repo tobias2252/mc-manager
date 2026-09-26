@@ -1,3 +1,170 @@
-.darker-background {
-    -fx-background-color: #CCCCCC;
+/* general */
+* {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+}
+
+/* background */
+.default-background {
+    -fx-background-color: -fx-bg-default;
+}
+
+.menu-background {
+    -fx-background-color: -fx-bg-menu;
+}
+
+/* label & text */
+.label {
+    -fx-text-fill: -fx-fg-default;
+}
+
+.mc-text {
+    -fx-font-family: "Minecraftia";
+}
+
+.bold-text {
+    -fx-font-weight: bold;
+}
+
+.italic-text {
+    -fx-font-style: italic;
+}
+
+.muted-text {
+    -fx-text-fill: -fx-fg-muted;
+}
+
+/* button */
+.button {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-text-fill: -fx-fg-default;
+}
+
+.button:hover {
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+/* toggle button */
+.toggle-button {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-text-fill: -fx-fg-default;
+}
+
+.toggle-button:hover {
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.toggle-button:pressed {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.primary-toggle-button {
+    -fx-background-color: -fx-primary-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-primary-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-text-fill: -fx-fg-default;
+}
+
+.primary-toggle-button:hover {
+    -fx-border-color: -fx-primary-focus;
+}
+
+.primary-toggle-button:pressed {
+    -fx-background-color: -fx-primary-action;
+    -fx-border-color: -fx-primary-focus;
+}
+
+.primary-toggle-button:selected {
+    -fx-background-color: -fx-primary-action;
+    -fx-border-color: -fx-primary-focus;
+}
+
+/* text field */
+.text-field {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-width: 2;
+
+    -fx-text-fill: -fx-fg-default;
+    -fx-prompt-text-fill: -fx-fg-muted;
+    -fx-highlight-fill: -fx-ctrl-action;
+}
+
+/* list view & cell */
+.list-view {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-width: 2;
+}
+
+.list-cell {
+    -fx-padding: 10 10 10 10;
+
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+}
+
+.list-cell:hover {
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.list-cell:selected {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+/* scroll bar & corner */
+.corner {
+    -fx-background-color: -fx-ctrl-default;
+}
+
+.scroll-bar {
+    -fx-background-color: -fx-ctrl-default;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-ctrl-highlight;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: -fx-ctrl-action;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
 }

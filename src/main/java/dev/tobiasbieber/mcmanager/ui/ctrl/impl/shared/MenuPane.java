@@ -19,11 +19,11 @@ public class MenuPane extends BaseController {
     @FXML
     public ToggleButton worldButton;
     @FXML
+    public ToggleButton modButton;
+    @FXML
     public ToggleButton resourcePackButton;
     @FXML
     public ToggleButton shaderPackButton;
-    @FXML
-    public ToggleButton modButton;
     @FXML
     public ToggleButton settingsButton;
 

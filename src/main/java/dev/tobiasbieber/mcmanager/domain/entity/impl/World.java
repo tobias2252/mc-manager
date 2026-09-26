@@ -108,6 +108,12 @@ public class World extends BaseEntity {
         this.seed = seed;
     }
 
+    @Override
+    public String getFilterText() {
+        // TODO maybe expand to include more values
+        return name;
+    }
+
     // just for testing
     @Override
     public String toString() {

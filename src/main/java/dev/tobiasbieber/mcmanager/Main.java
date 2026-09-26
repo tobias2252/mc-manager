@@ -1,8 +1,10 @@
 package dev.tobiasbieber.mcmanager;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
+import dev.tobiasbieber.mcmanager.service.entity.WorldService;
 import dev.tobiasbieber.mcmanager.ui.MainApplication;
 import javafx.application.Platform;
+import javafx.scene.text.Font;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +17,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            initServices();
+            loadFonts();
             startApp(args);
         } catch (Exception e) {
             log.error("Error occurred during app startup", e);
@@ -34,5 +38,15 @@ public class Main {
         log.info("STOPPING APPLICATION");
         Platform.exit();
         System.exit(0);
+    }
+
+    private static void initServices() {
+        log.info("INITIALIZING SERVICES");
+        appContext.registerService(new WorldService());
+    }
+
+    private static void loadFonts() {
+        log.info("LOADING FONTS");
+        Font.loadFont(Main.class.getResourceAsStream("/font/Minecraftia.ttf"), 12);
     }
 }

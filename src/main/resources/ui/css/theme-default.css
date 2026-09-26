@@ -1,0 +1,22 @@
+* {
+    /* background */
+    -fx-bg-default: hsb(0, 0%, 15%);
+    -fx-bg-menu: hsb(0, 0%, 10%);
+
+    /* foreground */
+    -fx-fg-default: hsb(0, 0%, 90%);
+    -fx-fg-muted: hsb(0, 0%, 60%);
+    -fx-fg-inverted: hsb(0, 0%, 10%);
+
+    /* control */
+    -fx-ctrl-default: hsb(0, 0%, 20%);
+    -fx-ctrl-highlight: hsb(0, 0%, 25%);
+    -fx-ctrl-action: hsb(0, 0%, 30%);
+    -fx-ctrl-focus: hsb(0, 0%, 90%);
+
+    /* primary color */
+    -fx-primary-default: hsb(180, 100%, 25%);
+    -fx-primary-highlight: hsb(180, 100%, 30%);
+    -fx-primary-action: hsb(180, 100%, 35%);
+    -fx-primary-focus: hsb(0, 0%, 90%);
+}
