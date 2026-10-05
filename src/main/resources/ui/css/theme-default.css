@@ -14,9 +14,15 @@
     -fx-ctrl-action: hsb(0, 0%, 30%);
     -fx-ctrl-focus: hsb(0, 0%, 90%);
 
-    /* primary color */
+    /* primary control */
     -fx-primary-default: hsb(180, 100%, 25%);
     -fx-primary-highlight: hsb(180, 100%, 30%);
     -fx-primary-action: hsb(180, 100%, 35%);
     -fx-primary-focus: hsb(0, 0%, 90%);
+
+    /* destructive control */
+    -fx-destructive-default: hsb(10, 60%, 50%);
+    -fx-destructive-highlight: hsb(10, 60%, 55%);
+    -fx-destructive-action: hsb(10, 60%, 60%);
+    -fx-destructive-focus: hsb(0, 0%, 90%);
 }

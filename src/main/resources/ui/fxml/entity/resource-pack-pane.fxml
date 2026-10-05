@@ -5,10 +5,11 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ResourcePackPane"
-            stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css">
+            stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css"
+            styleClass="default-background">
 
     <center>
-        <Label text="ResourcePackPane"/>
+        <Label text="Will be implemented soon :)"/>
     </center>
 
 </BorderPane>

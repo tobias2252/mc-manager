@@ -1,6 +1,7 @@
 package dev.tobiasbieber.mcmanager.domain.entity.impl;
 
 import dev.tobiasbieber.mcmanager.domain.entity.BaseEntity;
+import dev.tobiasbieber.mcmanager.util.Formatter;
 import javafx.scene.image.Image;
 
 import java.nio.file.Path;
@@ -110,8 +111,7 @@ public class World extends BaseEntity {
 
     @Override
     public String getFilterText() {
-        // TODO maybe expand to include more values
-        return name;
+        return name + version + Formatter.DEFAULT_DATE_TIME.format(lastPlayed);
     }
 
     // just for testing

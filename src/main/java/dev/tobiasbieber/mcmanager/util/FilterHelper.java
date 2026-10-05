@@ -1,6 +1,6 @@
 package dev.tobiasbieber.mcmanager.util;
 
-public class FilterFunctions {
+public class FilterHelper {
 
     public static boolean matchesFilter(String filter, String text) {
         String convFilter = filter.toLowerCase().trim().replace(" ", "");

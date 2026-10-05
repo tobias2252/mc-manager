@@ -3,7 +3,7 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
 import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
-import dev.tobiasbieber.mcmanager.util.FilterFunctions;
+import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -38,11 +38,12 @@ public class WorldListView extends ListView<World> {
         if (filteredList != null) {
             filteredList.setPredicate(world -> {
                 String text = world.getFilterText();
-                return FilterFunctions.matchesFilter(filter, text);
+                return FilterHelper.matchesFilter(filter, text);
             });
         }
     }
 
+    // TODO add sorting later
     public void sortWorldList(Comparator<World> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);

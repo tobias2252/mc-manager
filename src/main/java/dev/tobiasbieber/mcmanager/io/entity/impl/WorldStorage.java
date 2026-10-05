@@ -60,6 +60,7 @@ public class WorldStorage extends EntityStorage<World> {
         world.setIcon(new Image(Objects.requireNonNull(getClass().getResourceAsStream(defaultIcon))));
     }
 
+    // TODO maybe create dedicated class for loading to include even older versions
     private void loadLevelData(World world) {
         Path worldPath = world.getPath();
         Path levelPath = worldPath.resolve("level.dat");

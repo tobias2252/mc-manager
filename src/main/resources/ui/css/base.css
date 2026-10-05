@@ -1,9 +1,3 @@
-/* general */
-* {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 14;
-}
-
 /* background */
 .default-background {
     -fx-background-color: -fx-bg-default;
@@ -13,13 +7,45 @@
     -fx-background-color: -fx-bg-menu;
 }
 
+.boxed-background {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+}
+
 /* label & text */
 .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
     -fx-text-fill: -fx-fg-default;
+}
+
+.detail-label {
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 0 0 2 0;
+
+    -fx-padding: 0 0 5 0;
+    -fx-max-width: Infinity;
+}
+
+.copyable-label {
+    -fx-cursor: hand;
+}
+
+.copyable-label:hover {
+    -fx-underline: true;
 }
 
 .mc-text {
     -fx-font-family: "Minecraftia";
+}
+
+.title-text {
+    -fx-font-size: 18;
 }
 
 .bold-text {
@@ -43,6 +69,8 @@
     -fx-border-radius: 0;
     -fx-border-width: 2;
 
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
     -fx-text-fill: -fx-fg-default;
 }
 
@@ -55,6 +83,28 @@
     -fx-border-color: -fx-ctrl-focus;
 }
 
+.destructive-button {
+    -fx-background-color: -fx-destructive-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-destructive-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-fg-default;
+}
+
+.destructive-button:hover {
+    -fx-border-color: -fx-destructive-focus;
+}
+
+.destructive-button:pressed {
+    -fx-background-color: -fx-destructive-action;
+    -fx-border-color: -fx-destructive-focus;
+}
+
 /* toggle button */
 .toggle-button {
     -fx-background-color: -fx-ctrl-default;
@@ -64,6 +114,8 @@
     -fx-border-radius: 0;
     -fx-border-width: 2;
 
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
     -fx-text-fill: -fx-fg-default;
 }
 
@@ -89,6 +141,8 @@
     -fx-border-radius: 0;
     -fx-border-width: 2;
 
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
     -fx-text-fill: -fx-fg-default;
 }
 
@@ -114,9 +168,35 @@
     -fx-border-color: -fx-ctrl-highlight;
     -fx-border-width: 2;
 
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
     -fx-text-fill: -fx-fg-default;
     -fx-prompt-text-fill: -fx-fg-muted;
     -fx-highlight-fill: -fx-ctrl-action;
+}
+
+.text-field:focused {
+    -fx-border-color: -fx-primary-focus;
+}
+
+.text-area {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-width: 2;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-fg-default;
+    -fx-highlight-fill: -fx-ctrl-action;
+}
+
+.text-area .content {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-padding: 5;
 }
 
 /* list view & cell */
@@ -147,6 +227,113 @@
     -fx-border-color: -fx-ctrl-focus;
 }
 
+/* combo box */
+.combo-box {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+}
+
+.combo-box:hover {
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.combo-box:showing {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+
+    -fx-padding: 0 10 0 10;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-fg-default;
+}
+
+.combo-box .list-cell:hover {
+    -fx-border-color: transparent;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: -fx-fg-default;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-width: 2;
+
+    -fx-padding: 0;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+
+    -fx-padding: 8 10 8 10;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-fg-default;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+/* split pane */
+.split-pane {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.split-pane .split-pane-divider {
+    -fx-background-color: -fx-ctrl-highlight;
+}
+
+/* scroll pane */
+.scroll-pane {
+    -fx-background-color: -fx-ctrl-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
 /* scroll bar & corner */
 .corner {
     -fx-background-color: -fx-ctrl-default;
@@ -167,4 +354,10 @@
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-background-color: transparent;
+}
+
+/* separator */
+.separator .line {
+    -fx-border-color: -fx-ctrl-highlight;
+    -fx-border-width: 1;
 }

@@ -1,8 +1,10 @@
 package dev.tobiasbieber.mcmanager;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
+import dev.tobiasbieber.mcmanager.core.ExceptionBridge;
 import dev.tobiasbieber.mcmanager.service.entity.WorldService;
 import dev.tobiasbieber.mcmanager.ui.MainApplication;
+import dev.tobiasbieber.mcmanager.ui.ctrl.impl.dialog.ErrorDialog;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import org.slf4j.Logger;
@@ -30,6 +32,11 @@ public class Main {
     // starts main application
     public static void startApp(String[] args) {
         log.info("STARTING APPLICATION");
+        ExceptionBridge.setHandler(e -> {
+            log.error("Error occurred during app runtime", e);
+            ErrorDialog.show(e);
+        });
+        ExceptionBridge.install();
         MainApplication.launch(MainApplication.class, args);
     }
 
