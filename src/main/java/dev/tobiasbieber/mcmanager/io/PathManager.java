@@ -27,6 +27,20 @@ public class PathManager {
         return worldDir;
     }
 
+    public Path findResourcePackDir() {
+        Path resourcePackDir = minecraftDir.resolve("resourcepacks");
+        validateDir(minecraftDir, false);
+        validateDir(resourcePackDir, false);
+        return resourcePackDir;
+    }
+
+    public Path findShaderPackDir() {
+        Path shaderPackDir = minecraftDir.resolve("shaderpacks");
+        validateDir(minecraftDir, false);
+        validateDir(shaderPackDir, false);
+        return shaderPackDir;
+    }
+
     // checks if the given directory exists and creates it if necessary
     private void validateDir(Path path, boolean create) {
         if (!Files.exists(path)) {

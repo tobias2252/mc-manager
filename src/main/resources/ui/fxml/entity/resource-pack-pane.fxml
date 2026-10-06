@@ -1,15 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import dev.tobiasbieber.mcmanager.ui.view.entity.ResourcePackListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ResourcePackPane"
             stylesheets="@/ui/css/base.css, @/ui/css/theme-default.css"
             styleClass="default-background">
 
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <HBox spacing="10">
+
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+
+            <Button fx:id="clearButton"
+                    text="%text.clear"
+                    prefWidth="150"/>
+
+            <TextField fx:id="searchField"
+                       promptText="%hint.search"
+                       HBox.hgrow="ALWAYS"
+                       maxWidth="Infinity"/>
+
+            <ComboBox fx:id="sortComboBox"
+                      prefWidth="250"
+                      maxHeight="Infinity"/>
+
+        </HBox>
+    </top>
+
     <center>
-        <Label text="Will be implemented soon :)"/>
+        <ResourcePackListView fx:id="resourcePackListView"/>
     </center>
+
+    <bottom>
+        <HBox spacing="10">
+
+            <padding>
+                <Insets top="10"/>
+            </padding>
+
+            <Button fx:id="reloadButton"
+                    text="%text.reload"
+                    prefWidth="150"/>
+
+            <Button fx:id="openFolderButton"
+                    text="%text.openFolder"
+                    prefWidth="150"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="deleteButton"
+                    styleClass="destructive-button"
+                    text="%text.delete"
+                    prefWidth="150"/>
+
+        </HBox>
+    </bottom>
 
 </BorderPane>

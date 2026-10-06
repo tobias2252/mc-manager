@@ -37,11 +37,11 @@ public class WorldListCell extends ListCell<World> {
 
         // version label
         versionLabel = new Label();
-        versionLabel.getStyleClass().addAll("muted-text");
+        versionLabel.getStyleClass().add("muted-text");
 
         // last played label
         lastPlayedLabel = new Label();
-        lastPlayedLabel.getStyleClass().addAll("muted-text");
+        lastPlayedLabel.getStyleClass().add("muted-text");
 
         // text box
         VBox textBox = new VBox();

@@ -23,15 +23,6 @@
     -fx-text-fill: -fx-fg-default;
 }
 
-.detail-label {
-    -fx-border-color: -fx-ctrl-highlight;
-    -fx-border-radius: 0;
-    -fx-border-width: 0 0 2 0;
-
-    -fx-padding: 0 0 5 0;
-    -fx-max-width: Infinity;
-}
-
 .copyable-label {
     -fx-cursor: hand;
 }
@@ -173,6 +164,10 @@
     -fx-text-fill: -fx-fg-default;
     -fx-prompt-text-fill: -fx-fg-muted;
     -fx-highlight-fill: -fx-ctrl-action;
+}
+
+.text-field:hover {
+    -fx-border-color: -fx-primary-focus;
 }
 
 .text-field:focused {

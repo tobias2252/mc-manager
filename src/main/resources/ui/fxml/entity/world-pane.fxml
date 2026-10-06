@@ -60,62 +60,56 @@
                     </columnConstraints>
 
                     <Label text="%world.path"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="0"/>
 
                     <Label fx:id="pathLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="0"/>
 
                     <Label text="%world.gameType"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="1"/>
 
                     <Label fx:id="gameTypeLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="1"/>
 
                     <Label text="%world.difficulty"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="2"/>
 
                     <Label fx:id="difficultyLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="2"/>
 
                     <Label text="%world.hardcore"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="3"/>
 
                     <Label fx:id="hardcoreLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="3"/>
 
                     <Label text="%world.allowCommands"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="4"/>
 
                     <Label fx:id="allowCommandsLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="4"/>
 
                     <Label text="%world.seed"
-                           styleClass="detail-label, bold-text"
+                           styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="5"/>
 
                     <Label fx:id="seedLabel"
-                           styleClass="detail-label"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="5"/>
 
@@ -131,9 +125,15 @@
                 <Insets top="10"/>
             </padding>
 
+            <Button fx:id="reloadButton"
+                    text="%text.reload"
+                    prefWidth="150"/>
+
             <Button fx:id="openFolderButton"
                     text="%text.openFolder"
                     prefWidth="150"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
 
             <Button fx:id="backupButton"
                     text="%worldPane.manageBackups"
@@ -142,12 +142,6 @@
             <Button fx:id="deleteButton"
                     styleClass="destructive-button"
                     text="%text.delete"
-                    prefWidth="150"/>
-
-            <Region HBox.hgrow="ALWAYS"/>
-
-            <Button fx:id="reloadButton"
-                    text="%text.reload"
                     prefWidth="150"/>
 
         </HBox>

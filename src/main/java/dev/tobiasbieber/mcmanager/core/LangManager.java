@@ -19,7 +19,7 @@ public class LangManager {
     // system locale is used by default
     public LangManager() {
         this.currentLang = Locale.getDefault();
-        this.bundle = ResourceBundle.getBundle(langProps);
+        this.bundle = ResourceBundle.getBundle(langProps, Locale.ROOT); // TODO remove Locale.ROOT later
     }
 
     public String get(String key) {

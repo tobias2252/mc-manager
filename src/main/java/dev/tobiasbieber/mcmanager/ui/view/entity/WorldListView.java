@@ -43,7 +43,6 @@ public class WorldListView extends ListView<World> {
         }
     }
 
-    // TODO add sorting later
     public void sortWorldList(Comparator<World> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);

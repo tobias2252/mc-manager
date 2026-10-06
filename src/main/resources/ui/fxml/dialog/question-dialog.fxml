@@ -13,7 +13,7 @@
             styleClass="default-background">
 
     <center>
-        <VBox spacing="20">
+        <VBox>
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
@@ -22,7 +22,10 @@
             <Label fx:id="questionLabel"
                    styleClass="title-text, bold-text"/>
 
-            <Label fx:id="descriptionLabel"/>
+            <Label fx:id="descriptionLabel"
+                   wrapText="true"
+                   VBox.vgrow="ALWAYS"
+                   maxHeight="Infinity"/>
 
         </VBox>
     </center>

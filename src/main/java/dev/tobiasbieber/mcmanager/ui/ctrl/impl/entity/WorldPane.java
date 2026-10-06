@@ -3,6 +3,7 @@ package dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity;
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
 import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
+import dev.tobiasbieber.mcmanager.io.PathManager;
 import dev.tobiasbieber.mcmanager.service.entity.WorldService;
 import dev.tobiasbieber.mcmanager.ui.TaskExecutor;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseController;
@@ -62,13 +63,13 @@ public class WorldPane extends BaseController {
 
     // bottom
     @FXML
+    public Button reloadButton;
+    @FXML
     public Button openFolderButton;
     @FXML
     public Button backupButton;
     @FXML
     public Button deleteButton;
-    @FXML
-    public Button reloadButton;
 
     @FXML
     private void initialize() {
@@ -94,7 +95,7 @@ public class WorldPane extends BaseController {
 
         clearButton.setOnAction(event -> clearSearch());
         reloadButton.setOnAction(event -> reloadWorlds());
-        openFolderButton.setOnAction(event -> openSelectedWorld());
+        openFolderButton.setOnAction(event -> openWorldFolder());
         deleteButton.setOnAction(event -> deleteSelectedWorld());
     }
 
@@ -147,12 +148,10 @@ public class WorldPane extends BaseController {
         loadWorldsAsync();
     }
 
-    // opens the selected world in the file explorer
-    private void openSelectedWorld() {
-        World world = worldListView.getSelectionModel().getSelectedItem();
-        if (world != null) {
-            FileHelper.openFolder(world.getPath());
-        }
+    // opens the world folder
+    private void openWorldFolder() {
+        PathManager pathManager = AppContext.getInstance().getPathManager();
+        FileHelper.openFolder(pathManager.findWorldDir());
     }
 
     // confirms the deletion of the selected world and deletes it
@@ -222,7 +221,6 @@ public class WorldPane extends BaseController {
     }
 
     private void disableDependentControls(boolean disabled) {
-        openFolderButton.setDisable(disabled);
         // backupButton.setDisable(disabled);
         deleteButton.setDisable(disabled);
     }

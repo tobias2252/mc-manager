@@ -2,6 +2,8 @@ package dev.tobiasbieber.mcmanager;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.ExceptionBridge;
+import dev.tobiasbieber.mcmanager.service.entity.ResourcePackService;
+import dev.tobiasbieber.mcmanager.service.entity.ShaderPackService;
 import dev.tobiasbieber.mcmanager.service.entity.WorldService;
 import dev.tobiasbieber.mcmanager.ui.MainApplication;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.dialog.ErrorDialog;
@@ -47,9 +49,15 @@ public class Main {
         System.exit(0);
     }
 
+    private static void determineOS() {
+        // TODO add macOS support later
+    }
+
     private static void initServices() {
         log.info("INITIALIZING SERVICES");
         appContext.registerService(new WorldService());
+        appContext.registerService(new ResourcePackService());
+        appContext.registerService(new ShaderPackService());
     }
 
     private static void loadFonts() {

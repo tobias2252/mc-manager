@@ -13,19 +13,19 @@ public class WorldService implements Service {
 
     private static final Logger log = LoggerFactory.getLogger(WorldService.class);
 
-    private final WorldStorage worldStorage;
+    private final WorldStorage storage;
 
     private List<World> worlds;
 
     public WorldService() {
-        worldStorage = new WorldStorage();
+        storage = new WorldStorage();
         worlds = new ArrayList<>();
     }
 
     // loads all worlds from the installation directory
     public void loadWorlds() {
         log.info("Loading worlds...");
-        worlds = worldStorage.load();
+        worlds = storage.load();
     }
 
     // returns a copy of the world list
@@ -35,7 +35,7 @@ public class WorldService implements Service {
 
     public void deleteWorld(World world) {
         log.info("Deleting world: {}", world.getPath());
-        worldStorage.delete(world);
+        storage.delete(world);
         worlds.remove(world);
     }
 }
