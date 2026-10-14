@@ -1,8 +1,8 @@
-package dev.tobiasbieber.mcmanager.ui.view.entity;
+package dev.tobiasbieber.mcmanager.ui.view.entity.listcell;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.ui.model.impl.WorldViewModel;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.impl.ResourcePackViewModel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -10,19 +10,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+public class ResourcePackListCell extends ListCell<ResourcePackViewModel> {
 
-public class WorldListCell extends ListCell<WorldViewModel> {
-
-    // managers
     private final LangManager langManager;
 
     private final HBox container;
     private final ImageView iconView;
     private final Label nameLabel;
-    private final Label versionLabel;
-    private final Label lastPlayedLabel;
+    private final Label descriptionLabel;
+    private final Label pathLabel;
 
-    public WorldListCell() {
+    public ResourcePackListCell() {
         langManager = AppContext.getInstance().getLangManager();
 
         // icon view
@@ -35,17 +33,16 @@ public class WorldListCell extends ListCell<WorldViewModel> {
         nameLabel = new Label();
         nameLabel.getStyleClass().add("bold-text");
 
-        // version label
-        versionLabel = new Label();
-        versionLabel.getStyleClass().add("muted-text");
+        // description label
+        descriptionLabel = new Label();
 
-        // last played label
-        lastPlayedLabel = new Label();
-        lastPlayedLabel.getStyleClass().add("muted-text");
+        // path label
+        pathLabel = new Label();
+        pathLabel.getStyleClass().add("muted-text");
 
         // text box
         VBox textBox = new VBox();
-        textBox.getChildren().addAll(nameLabel, versionLabel, lastPlayedLabel);
+        textBox.getChildren().addAll(nameLabel, descriptionLabel, pathLabel);
         textBox.setAlignment(Pos.CENTER_LEFT);
 
         // container
@@ -55,7 +52,7 @@ public class WorldListCell extends ListCell<WorldViewModel> {
     }
 
     @Override
-    protected void updateItem(WorldViewModel item, boolean empty) {
+    protected void updateItem(ResourcePackViewModel item, boolean empty) {
         super.updateItem(item, empty);
 
         if (empty || item == null) {
@@ -66,12 +63,10 @@ public class WorldListCell extends ListCell<WorldViewModel> {
 
         iconView.setImage(item.getIcon());
         nameLabel.setText(item.getName());
+        descriptionLabel.setText(item.getDescription());
 
-        String versionString = langManager.get("world.version") + ": " + item.getVersion();
-        versionLabel.setText(versionString);
-
-        String lastPlayedString = langManager.get("world.lastPlayed") + ": " + item.getLastPlayed();
-        lastPlayedLabel.setText(lastPlayedString);
+        String pathString = langManager.get("entity.path") + ": " + item.getPath();
+        pathLabel.setText(pathString);
 
         setMouseTransparent(false); // set false, or it will be transparent again
         setText(null);

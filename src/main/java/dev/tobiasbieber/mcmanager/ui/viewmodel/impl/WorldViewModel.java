@@ -1,9 +1,9 @@
-package dev.tobiasbieber.mcmanager.ui.model.impl;
+package dev.tobiasbieber.mcmanager.ui.viewmodel.impl;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
 import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
-import dev.tobiasbieber.mcmanager.ui.model.EntityViewModel;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.EntityViewModel;
 import dev.tobiasbieber.mcmanager.util.Formatter;
 import javafx.scene.image.Image;
 

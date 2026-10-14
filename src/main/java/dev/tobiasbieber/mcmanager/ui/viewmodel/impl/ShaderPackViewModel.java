@@ -1,7 +1,7 @@
-package dev.tobiasbieber.mcmanager.ui.model.impl;
+package dev.tobiasbieber.mcmanager.ui.viewmodel.impl;
 
 import dev.tobiasbieber.mcmanager.domain.entity.impl.ShaderPack;
-import dev.tobiasbieber.mcmanager.ui.model.EntityViewModel;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.EntityViewModel;
 
 public class ShaderPackViewModel extends EntityViewModel<ShaderPack> {
 

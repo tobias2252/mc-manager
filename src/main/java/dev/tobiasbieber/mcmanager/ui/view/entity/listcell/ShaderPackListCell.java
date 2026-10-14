@@ -1,8 +1,8 @@
-package dev.tobiasbieber.mcmanager.ui.view.entity;
+package dev.tobiasbieber.mcmanager.ui.view.entity.listcell;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.impl.ShaderPackViewModel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

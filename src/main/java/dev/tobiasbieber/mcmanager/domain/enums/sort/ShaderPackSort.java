@@ -1,7 +1,7 @@
 package dev.tobiasbieber.mcmanager.domain.enums.sort;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
-import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.impl.ShaderPackViewModel;
 
 import java.util.Comparator;
 

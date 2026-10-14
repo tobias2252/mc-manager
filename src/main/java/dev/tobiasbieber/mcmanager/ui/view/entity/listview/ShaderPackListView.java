@@ -1,8 +1,9 @@
-package dev.tobiasbieber.mcmanager.ui.view.entity;
+package dev.tobiasbieber.mcmanager.ui.view.entity.listview;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.ui.model.impl.ResourcePackViewModel;
+import dev.tobiasbieber.mcmanager.ui.view.entity.listcell.ShaderPackListCell;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.impl.ShaderPackViewModel;
 import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,23 +13,23 @@ import javafx.scene.control.ListView;
 
 import java.util.Comparator;
 
-public class ResourcePackListView extends ListView<ResourcePackViewModel> {
+public class ShaderPackListView extends ListView<ShaderPackViewModel> {
 
-    private FilteredList<ResourcePackViewModel> filteredList;
-    private SortedList<ResourcePackViewModel> sortedList;
+    private FilteredList<ShaderPackViewModel> filteredList;
+    private SortedList<ShaderPackViewModel> sortedList;
 
-    public ResourcePackListView() {
+    public ShaderPackListView() {
         LangManager langManager = AppContext.getInstance().getLangManager();
 
         // create placeholder
-        Label placeholder = new Label(langManager.get("resourcePackPane.listEmpty"));
+        Label placeholder = new Label(langManager.get("shaderPackPane.listEmpty"));
         placeholder.getStyleClass().add("muted-text");
         setPlaceholder(placeholder);
 
-        setCellFactory(cell -> new ResourcePackListCell());
+        setCellFactory(cell -> new ShaderPackListCell());
     }
 
-    public void setResourcePackList(ObservableList<ResourcePackViewModel> list) {
+    public void setShaderPackList(ObservableList<ShaderPackViewModel> list) {
         filteredList = new FilteredList<>(list, pack -> true);
         sortedList = new SortedList<>(filteredList);
         setItems(sortedList);
@@ -43,7 +44,7 @@ public class ResourcePackListView extends ListView<ResourcePackViewModel> {
         }
     }
 
-    public void sortList(Comparator<ResourcePackViewModel> comparator) {
+    public void sortList(Comparator<ShaderPackViewModel> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);
         }

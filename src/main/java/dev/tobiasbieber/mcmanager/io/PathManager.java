@@ -27,6 +27,13 @@ public class PathManager {
         return worldDir;
     }
 
+    public Path findBackupDir() {
+        Path backupDir = minecraftDir.resolve("savesbackup");
+        validateDir(minecraftDir, false);
+        validateDir(backupDir, true);
+        return backupDir;
+    }
+
     public Path findResourcePackDir() {
         Path resourcePackDir = minecraftDir.resolve("resourcepacks");
         validateDir(minecraftDir, false);

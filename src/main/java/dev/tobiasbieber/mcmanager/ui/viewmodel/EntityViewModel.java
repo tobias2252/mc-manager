@@ -1,4 +1,4 @@
-package dev.tobiasbieber.mcmanager.ui.model;
+package dev.tobiasbieber.mcmanager.ui.viewmodel;
 
 import dev.tobiasbieber.mcmanager.domain.entity.BaseEntity;
 

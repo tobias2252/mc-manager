@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import dev.tobiasbieber.mcmanager.ui.view.entity.WorldListView?>
+<?import dev.tobiasbieber.mcmanager.ui.view.entity.listview.WorldListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -31,91 +31,85 @@
                        maxWidth="Infinity"/>
 
             <ComboBox fx:id="sortComboBox"
-                      prefWidth="200"
+                      prefWidth="250"
                       maxHeight="Infinity"/>
 
         </HBox>
     </top>
 
     <center>
-        <SplitPane dividerPositions="0.60"
-                   orientation="VERTICAL">
-
+        <VBox spacing="10">
             <WorldListView fx:id="worldListView"
-                           minHeight="50"/>
+                           VBox.vgrow="ALWAYS"/>
 
-            <ScrollPane fitToWidth="true"
-                        hbarPolicy="NEVER"
-                        minHeight="50">
+            <GridPane vgap="10"
+                      styleClass="boxed-background">
 
-                <GridPane vgap="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
 
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="30"/>
+                    <ColumnConstraints percentWidth="70"/>
+                </columnConstraints>
 
-                    <columnConstraints>
-                        <ColumnConstraints percentWidth="40"/>
-                        <ColumnConstraints percentWidth="60"/>
-                    </columnConstraints>
+                <Label text="%entity.path"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
 
-                    <Label text="%entity.path"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="0"/>
+                <Label fx:id="pathLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"/>
 
-                    <Label fx:id="pathLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"/>
+                <Label text="%world.gameType"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
 
-                    <Label text="%world.gameType"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="1"/>
+                <Label fx:id="gameTypeLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
 
-                    <Label fx:id="gameTypeLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"/>
+                <Label text="%world.difficulty"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"/>
 
-                    <Label text="%world.difficulty"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="2"/>
+                <Label fx:id="difficultyLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"/>
 
-                    <Label fx:id="difficultyLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="2"/>
+                <Label text="%world.hardcore"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
 
-                    <Label text="%world.hardcore"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="3"/>
+                <Label fx:id="hardcoreLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
 
-                    <Label fx:id="hardcoreLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="3"/>
+                <Label text="%world.cheatsEnabled"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"/>
 
-                    <Label text="%world.cheatsEnabled"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="4"/>
+                <Label fx:id="cheatsEnabledLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="4"/>
 
-                    <Label fx:id="cheatsEnabledLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="4"/>
+                <Label text="%world.seed"
+                       styleClass="bold-text"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="5"/>
 
-                    <Label text="%world.seed"
-                           styleClass="bold-text"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="5"/>
+                <Label fx:id="seedLabel"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="5"/>
 
-                    <Label fx:id="seedLabel"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="5"/>
-
-                </GridPane>
-            </ScrollPane>
-        </SplitPane>
+            </GridPane>
+        </VBox>
     </center>
 
     <bottom>
@@ -137,7 +131,7 @@
 
             <Button fx:id="backupButton"
                     text="%worldPane.manageBackups"
-                    prefWidth="150"/>
+                    prefWidth="200"/>
 
             <Button fx:id="deleteButton"
                     styleClass="destructive-button"

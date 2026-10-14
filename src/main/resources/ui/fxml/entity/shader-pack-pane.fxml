@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import dev.tobiasbieber.mcmanager.ui.view.entity.ShaderPackListView?>
+<?import dev.tobiasbieber.mcmanager.ui.view.entity.listview.ShaderPackListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -31,7 +31,7 @@
                        maxWidth="Infinity"/>
 
             <ComboBox fx:id="sortComboBox"
-                      prefWidth="200"
+                      prefWidth="250"
                       maxHeight="Infinity"/>
 
         </HBox>

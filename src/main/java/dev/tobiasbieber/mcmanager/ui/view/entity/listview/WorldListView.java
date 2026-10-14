@@ -1,8 +1,9 @@
-package dev.tobiasbieber.mcmanager.ui.view.entity;
+package dev.tobiasbieber.mcmanager.ui.view.entity.listview;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.ui.model.impl.WorldViewModel;
+import dev.tobiasbieber.mcmanager.ui.view.entity.listcell.WorldListCell;
+import dev.tobiasbieber.mcmanager.ui.viewmodel.impl.WorldViewModel;
 import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
