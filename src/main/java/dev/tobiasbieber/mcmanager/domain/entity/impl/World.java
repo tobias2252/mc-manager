@@ -1,7 +1,8 @@
 package dev.tobiasbieber.mcmanager.domain.entity.impl;
 
 import dev.tobiasbieber.mcmanager.domain.entity.BaseEntity;
-import dev.tobiasbieber.mcmanager.util.Formatter;
+import dev.tobiasbieber.mcmanager.domain.enums.Difficulty;
+import dev.tobiasbieber.mcmanager.domain.enums.GameType;
 import javafx.scene.image.Image;
 
 import java.nio.file.Path;
@@ -16,22 +17,8 @@ public class World extends BaseEntity {
     private GameType gameType;
     private Difficulty difficulty;
     private Boolean hardcore;
-    private Boolean allowCommands;
+    private Boolean cheatsEnabled;
     private Long seed;
-
-    public enum GameType {
-        SURVIVAL,
-        CREATIVE,
-        ADVENTURE,
-        SPECTATOR
-    }
-
-    public enum Difficulty {
-        PEACEFUL,
-        EASY,
-        NORMAL,
-        HARD
-    }
 
     public World(Path path) {
         super(path);
@@ -93,12 +80,12 @@ public class World extends BaseEntity {
         this.hardcore = hardcore;
     }
 
-    public Boolean getAllowCommands() {
-        return allowCommands;
+    public Boolean getCheatsEnabled() {
+        return cheatsEnabled;
     }
 
-    public void setAllowCommands(Boolean allowCommands) {
-        this.allowCommands = allowCommands;
+    public void setCheatsEnabled(Boolean cheatsEnabled) {
+        this.cheatsEnabled = cheatsEnabled;
     }
 
     public Long getSeed() {
@@ -107,26 +94,5 @@ public class World extends BaseEntity {
 
     public void setSeed(Long seed) {
         this.seed = seed;
-    }
-
-    @Override
-    public String getFilterText() {
-        return name + version + Formatter.DEFAULT_DATE_TIME.format(lastPlayed);
-    }
-
-    // just for testing
-    @Override
-    public String toString() {
-        return "World{" +
-                "icon=" + icon +
-                ", name='" + name + '\'' +
-                ", version='" + version + '\'' +
-                ", lastPlayed=" + lastPlayed +
-                ", gameType=" + gameType +
-                ", difficulty=" + difficulty +
-                ", hardcore=" + hardcore +
-                ", allowCommands=" + allowCommands +
-                ", seed=" + seed +
-                '}';
     }
 }

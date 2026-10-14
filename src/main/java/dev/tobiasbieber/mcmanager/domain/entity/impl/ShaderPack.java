@@ -19,17 +19,4 @@ public class ShaderPack extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override
-    public String getFilterText() {
-        return name + getPath().toString();
-    }
-
-    // just for testing
-    @Override
-    public String toString() {
-        return "ShaderPack{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

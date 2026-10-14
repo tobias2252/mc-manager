@@ -1,30 +1,30 @@
-package dev.tobiasbieber.mcmanager.util.sort;
+package dev.tobiasbieber.mcmanager.domain.enums.sort;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ShaderPack;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
 
 import java.util.Comparator;
 
 public enum ShaderPackSort {
 
     NAME_ASC("sort.name.asc", Comparator.comparing(
-            ShaderPack::getName,
+            ShaderPackViewModel::getName,
             String.CASE_INSENSITIVE_ORDER
     )),
     NAME_DESC("sort.name.desc", Comparator.comparing(
-            ShaderPack::getName,
+            ShaderPackViewModel::getName,
             String.CASE_INSENSITIVE_ORDER
     ).reversed());
 
     private final String langKey;
-    private final Comparator<ShaderPack> comparator;
+    private final Comparator<ShaderPackViewModel> comparator;
 
-    ShaderPackSort(String langKey, Comparator<ShaderPack> comparator) {
+    ShaderPackSort(String langKey, Comparator<ShaderPackViewModel> comparator) {
         this.langKey = langKey;
         this.comparator = comparator;
     }
 
-    public Comparator<ShaderPack> getComparator() {
+    public Comparator<ShaderPackViewModel> getComparator() {
         return comparator;
     }
 

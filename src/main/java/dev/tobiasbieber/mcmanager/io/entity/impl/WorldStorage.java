@@ -2,6 +2,8 @@ package dev.tobiasbieber.mcmanager.io.entity.impl;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
+import dev.tobiasbieber.mcmanager.domain.enums.Difficulty;
+import dev.tobiasbieber.mcmanager.domain.enums.GameType;
 import dev.tobiasbieber.mcmanager.io.entity.EntityStorage;
 import dev.tobiasbieber.mcmanager.io.entity.EntityStorageException;
 import javafx.scene.image.Image;
@@ -81,14 +83,14 @@ public class WorldStorage extends EntityStorage<World> {
             world.setName(dataTag.getString("LevelName"));
             world.setVersion(dataTag.getCompoundTag("Version").getString("Name"));
             world.setLastPlayed(Instant.ofEpochMilli(dataTag.getLong("LastPlayed")));
-            world.setAllowCommands(dataTag.getByte("allowCommands") != 0);
+            world.setCheatsEnabled(dataTag.getByte("allowCommands") != 0);
 
             // set game type
             switch (dataTag.getInt("GameType")) {
-                case 0 -> world.setGameType(World.GameType.SURVIVAL);
-                case 1 -> world.setGameType(World.GameType.CREATIVE);
-                case 2 -> world.setGameType(World.GameType.ADVENTURE);
-                case 3 -> world.setGameType(World.GameType.SPECTATOR);
+                case 0 -> world.setGameType(GameType.SURVIVAL);
+                case 1 -> world.setGameType(GameType.CREATIVE);
+                case 2 -> world.setGameType(GameType.ADVENTURE);
+                case 3 -> world.setGameType(GameType.SPECTATOR);
             }
 
             // set difficulty
@@ -96,19 +98,19 @@ public class WorldStorage extends EntityStorage<World> {
                 // after version 26.x
                 CompoundTag settings = dataTag.getCompoundTag("difficulty_settings");
                 switch (settings.getString("difficulty")) {
-                    case "peaceful" -> world.setDifficulty(World.Difficulty.PEACEFUL);
-                    case "easy" -> world.setDifficulty(World.Difficulty.EASY);
-                    case "normal" -> world.setDifficulty(World.Difficulty.NORMAL);
-                    case "hard" -> world.setDifficulty(World.Difficulty.HARD);
+                    case "peaceful" -> world.setDifficulty(Difficulty.PEACEFUL);
+                    case "easy" -> world.setDifficulty(Difficulty.EASY);
+                    case "normal" -> world.setDifficulty(Difficulty.NORMAL);
+                    case "hard" -> world.setDifficulty(Difficulty.HARD);
                 }
                 world.setHardcore(settings.getByte("hardcore") != 0);
             } else {
                 // old format
                 switch (dataTag.getByte("Difficulty")) {
-                    case 0 -> world.setDifficulty(World.Difficulty.PEACEFUL);
-                    case 1 -> world.setDifficulty(World.Difficulty.EASY);
-                    case 2 -> world.setDifficulty(World.Difficulty.NORMAL);
-                    case 3 -> world.setDifficulty(World.Difficulty.HARD);
+                    case 0 -> world.setDifficulty(Difficulty.PEACEFUL);
+                    case 1 -> world.setDifficulty(Difficulty.EASY);
+                    case 2 -> world.setDifficulty(Difficulty.NORMAL);
+                    case 3 -> world.setDifficulty(Difficulty.HARD);
                 }
                 world.setHardcore(dataTag.getByte("hardcore") != 0);
             }

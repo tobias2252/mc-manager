@@ -2,16 +2,16 @@ package dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
+import dev.tobiasbieber.mcmanager.domain.enums.sort.WorldSort;
 import dev.tobiasbieber.mcmanager.io.PathManager;
 import dev.tobiasbieber.mcmanager.service.entity.WorldService;
 import dev.tobiasbieber.mcmanager.ui.TaskExecutor;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseController;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseUI;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.dialog.QuestionDialog;
+import dev.tobiasbieber.mcmanager.ui.model.impl.WorldViewModel;
 import dev.tobiasbieber.mcmanager.ui.view.entity.WorldListView;
 import dev.tobiasbieber.mcmanager.util.FileHelper;
-import dev.tobiasbieber.mcmanager.util.sort.WorldSort;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +33,7 @@ public class WorldPane extends BaseController {
     private WorldService worldService;
 
     // observable list for list view
-    private final ObservableList<World> worldList = FXCollections.observableArrayList();
+    private final ObservableList<WorldViewModel> worldList = FXCollections.observableArrayList();
 
     // top
     @FXML
@@ -57,7 +57,7 @@ public class WorldPane extends BaseController {
     @FXML
     public Label hardcoreLabel;
     @FXML
-    public Label allowCommandsLabel;
+    public Label cheatsEnabledLabel;
     @FXML
     public Label seedLabel;
 
@@ -106,9 +106,12 @@ public class WorldPane extends BaseController {
 
     // load worlds and store them in the observable list
     private void loadWorldsAsync() {
-        Task<Void> worldLoadingTask = TaskExecutor.createTask(worldService::loadWorlds);
-        worldLoadingTask.setOnSucceeded(event -> worldList.setAll(worldService.getWorlds()));
-        TaskExecutor.runTask(worldLoadingTask, "worldLoadingTask");
+        Task<Void> task = TaskExecutor.createTask(worldService::loadWorlds);
+        task.setOnSucceeded(event -> {
+            worldList.clear();
+            worldService.getWorlds().forEach(world -> worldList.add(new WorldViewModel(world)));
+        });
+        TaskExecutor.runTask(task, "World loading task");
     }
 
     // sets a filter on the world list view
@@ -116,7 +119,7 @@ public class WorldPane extends BaseController {
     private void createSearchField() {
         PauseTransition pause = new PauseTransition(Duration.millis(250));
         searchField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            pause.setOnFinished(event -> worldListView.filterWorldList(newValue));
+            pause.setOnFinished(event -> worldListView.filterList(newValue));
             pause.playFromStart();
         }));
     }
@@ -125,7 +128,7 @@ public class WorldPane extends BaseController {
         sortComboBox.getItems().setAll(WorldSort.values());
         sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null)
-                worldListView.sortWorldList(newValue.getComparator());
+                worldListView.sortList(newValue.getComparator());
         });
     }
 
@@ -156,14 +159,14 @@ public class WorldPane extends BaseController {
 
     // confirms the deletion of the selected world and deletes it
     private void deleteSelectedWorld() {
-        World world = worldListView.getSelectionModel().getSelectedItem();
+        WorldViewModel world = worldListView.getSelectionModel().getSelectedItem();
         if (world != null) {
             String question = langManager.get("dialog.deleteQuestion");
             String description = langManager.get("dialog.deleteWarning", world.getName());
             boolean result = QuestionDialog.show(question, description, QuestionDialog.AnswerType.DELETE_CANCEL);
 
             if (result) {
-                worldService.deleteWorld(world);
+                worldService.deleteWorld(world.getEntity());
                 worldList.remove(world); // remove from view
                 worldListView.getSelectionModel().clearSelection();
             }
@@ -171,37 +174,14 @@ public class WorldPane extends BaseController {
     }
 
     // fills in the details of the selected world
-    private void setWorldDetails(World world) {
+    private void setWorldDetails(WorldViewModel world) {
         if (world != null) {
-            pathLabel.setText(world.getPath().toString());
-
-            switch (world.getGameType()) {
-                case SURVIVAL -> gameTypeLabel.setText(langManager.get("gameType.survival"));
-                case CREATIVE -> gameTypeLabel.setText(langManager.get("gameType.creative"));
-                case ADVENTURE -> gameTypeLabel.setText(langManager.get("gameType.adventure"));
-                case SPECTATOR -> gameTypeLabel.setText(langManager.get("gameType.spectator"));
-            }
-
-            switch (world.getDifficulty()) {
-                case PEACEFUL -> difficultyLabel.setText(langManager.get("difficulty.peaceful"));
-                case EASY -> difficultyLabel.setText(langManager.get("difficulty.easy"));
-                case NORMAL -> difficultyLabel.setText(langManager.get("difficulty.normal"));
-                case HARD -> difficultyLabel.setText(langManager.get("difficulty.hard"));
-            }
-
-            if (world.getHardcore()) {
-                hardcoreLabel.setText(langManager.get("text.yes"));
-            } else {
-                hardcoreLabel.setText(langManager.get("text.no"));
-            }
-
-            if (world.getAllowCommands()) {
-                allowCommandsLabel.setText(langManager.get("text.yes"));
-            } else {
-                allowCommandsLabel.setText(langManager.get("text.no"));
-            }
-
-            seedLabel.setText(world.getSeed().toString());
+            pathLabel.setText(world.getPath());
+            gameTypeLabel.setText(world.getGameType());
+            difficultyLabel.setText(world.getDifficulty());
+            hardcoreLabel.setText(world.getHardcore());
+            cheatsEnabledLabel.setText(world.getCheatsEnabled());
+            seedLabel.setText(world.getSeed());
 
             // because click to copy action
             pathLabel.setMouseTransparent(false);
@@ -211,7 +191,7 @@ public class WorldPane extends BaseController {
             gameTypeLabel.setText("-");
             difficultyLabel.setText("-");
             hardcoreLabel.setText("-");
-            allowCommandsLabel.setText("-");
+            cheatsEnabledLabel.setText("-");
             seedLabel.setText("-");
 
             // because click to copy action

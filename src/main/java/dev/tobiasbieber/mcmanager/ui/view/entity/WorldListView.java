@@ -2,7 +2,7 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
+import dev.tobiasbieber.mcmanager.ui.model.impl.WorldViewModel;
 import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,10 +12,10 @@ import javafx.scene.control.ListView;
 
 import java.util.Comparator;
 
-public class WorldListView extends ListView<World> {
+public class WorldListView extends ListView<WorldViewModel> {
 
-    private FilteredList<World> filteredList;
-    private SortedList<World> sortedList;
+    private FilteredList<WorldViewModel> filteredList;
+    private SortedList<WorldViewModel> sortedList;
 
     public WorldListView() {
         LangManager langManager = AppContext.getInstance().getLangManager();
@@ -28,13 +28,13 @@ public class WorldListView extends ListView<World> {
         setCellFactory(cell -> new WorldListCell());
     }
 
-    public void setWorldList(ObservableList<World> worldList) {
-        filteredList = new FilteredList<>(worldList, world -> true);
+    public void setWorldList(ObservableList<WorldViewModel> list) {
+        filteredList = new FilteredList<>(list, world -> true);
         sortedList = new SortedList<>(filteredList);
         setItems(sortedList);
     }
 
-    public void filterWorldList(String filter) {
+    public void filterList(String filter) {
         if (filteredList != null) {
             filteredList.setPredicate(world -> {
                 String text = world.getFilterText();
@@ -43,7 +43,7 @@ public class WorldListView extends ListView<World> {
         }
     }
 
-    public void sortWorldList(Comparator<World> comparator) {
+    public void sortList(Comparator<WorldViewModel> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);
         }

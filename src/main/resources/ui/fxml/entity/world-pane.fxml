@@ -31,7 +31,7 @@
                        maxWidth="Infinity"/>
 
             <ComboBox fx:id="sortComboBox"
-                      prefWidth="250"
+                      prefWidth="200"
                       maxHeight="Infinity"/>
 
         </HBox>
@@ -59,7 +59,7 @@
                         <ColumnConstraints percentWidth="60"/>
                     </columnConstraints>
 
-                    <Label text="%world.path"
+                    <Label text="%entity.path"
                            styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="0"/>
@@ -95,12 +95,12 @@
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="3"/>
 
-                    <Label text="%world.allowCommands"
+                    <Label text="%world.cheatsEnabled"
                            styleClass="bold-text"
                            GridPane.columnIndex="0"
                            GridPane.rowIndex="4"/>
 
-                    <Label fx:id="allowCommandsLabel"
+                    <Label fx:id="cheatsEnabledLabel"
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="4"/>
 

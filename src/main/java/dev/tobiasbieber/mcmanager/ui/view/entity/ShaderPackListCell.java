@@ -2,13 +2,13 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ShaderPack;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.VBox;
 
-public class ShaderPackListCell extends ListCell<ShaderPack> {
+public class ShaderPackListCell extends ListCell<ShaderPackViewModel> {
 
     private final LangManager langManager;
 
@@ -34,7 +34,7 @@ public class ShaderPackListCell extends ListCell<ShaderPack> {
     }
 
     @Override
-    protected void updateItem(ShaderPack item, boolean empty) {
+    protected void updateItem(ShaderPackViewModel item, boolean empty) {
         super.updateItem(item, empty);
 
         if (empty || item == null) {
@@ -44,7 +44,7 @@ public class ShaderPackListCell extends ListCell<ShaderPack> {
         }
 
         nameLabel.setText(item.getName());
-        String pathString = langManager.get("shaderPack.path") + ": " + item.getPath();
+        String pathString = langManager.get("entity.path") + ": " + item.getPath();
         pathLabel.setText(pathString);
 
         setMouseTransparent(false); // set false, or it will be transparent again

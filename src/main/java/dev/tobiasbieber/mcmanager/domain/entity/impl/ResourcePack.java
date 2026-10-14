@@ -38,19 +38,4 @@ public class ResourcePack extends BaseEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String getFilterText() {
-        return name + description + getPath().toString();
-    }
-
-    // just for testing
-    @Override
-    public String toString() {
-        return "ResourcePack{" +
-                "icon=" + icon +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

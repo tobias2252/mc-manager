@@ -6,7 +6,7 @@ import java.nio.file.Path;
 // all minecraft resources are referred to as entities (worlds, mods, etc.)
 public abstract class BaseEntity {
 
-    private Path path;
+    private final Path path;
 
     public BaseEntity(Path path) {
         this.path = path;
@@ -14,13 +14,5 @@ public abstract class BaseEntity {
 
     public Path getPath() {
         return path;
-    }
-
-    public void setPath(Path path) {
-        this.path = path;
-    }
-
-    public String getFilterText() {
-        return null;
     }
 }

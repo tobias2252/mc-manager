@@ -2,7 +2,7 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ResourcePack;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ResourcePackViewModel;
 import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,10 +12,10 @@ import javafx.scene.control.ListView;
 
 import java.util.Comparator;
 
-public class ResourcePackListView extends ListView<ResourcePack> {
+public class ResourcePackListView extends ListView<ResourcePackViewModel> {
 
-    private FilteredList<ResourcePack> filteredList;
-    private SortedList<ResourcePack> sortedList;
+    private FilteredList<ResourcePackViewModel> filteredList;
+    private SortedList<ResourcePackViewModel> sortedList;
 
     public ResourcePackListView() {
         LangManager langManager = AppContext.getInstance().getLangManager();
@@ -28,13 +28,13 @@ public class ResourcePackListView extends ListView<ResourcePack> {
         setCellFactory(cell -> new ResourcePackListCell());
     }
 
-    public void setResourcePackList(ObservableList<ResourcePack> resourcePackList) {
-        filteredList = new FilteredList<>(resourcePackList, pack -> true);
+    public void setResourcePackList(ObservableList<ResourcePackViewModel> list) {
+        filteredList = new FilteredList<>(list, pack -> true);
         sortedList = new SortedList<>(filteredList);
         setItems(sortedList);
     }
 
-    public void filterResourcePackList(String filter) {
+    public void filterList(String filter) {
         if (filteredList != null) {
             filteredList.setPredicate(pack -> {
                 String text = pack.getFilterText();
@@ -43,7 +43,7 @@ public class ResourcePackListView extends ListView<ResourcePack> {
         }
     }
 
-    public void sortResourcePackList(Comparator<ResourcePack> comparator) {
+    public void sortList(Comparator<ResourcePackViewModel> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);
         }

@@ -2,7 +2,7 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ResourcePack;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ResourcePackViewModel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ResourcePackListCell extends ListCell<ResourcePack> {
+public class ResourcePackListCell extends ListCell<ResourcePackViewModel> {
 
     private final LangManager langManager;
 
@@ -52,7 +52,7 @@ public class ResourcePackListCell extends ListCell<ResourcePack> {
     }
 
     @Override
-    protected void updateItem(ResourcePack item, boolean empty) {
+    protected void updateItem(ResourcePackViewModel item, boolean empty) {
         super.updateItem(item, empty);
 
         if (empty || item == null) {
@@ -65,7 +65,7 @@ public class ResourcePackListCell extends ListCell<ResourcePack> {
         nameLabel.setText(item.getName());
         descriptionLabel.setText(item.getDescription());
 
-        String pathString = langManager.get("resourcePack.path") + ": " + item.getPath();
+        String pathString = langManager.get("entity.path") + ": " + item.getPath();
         pathLabel.setText(pathString);
 
         setMouseTransparent(false); // set false, or it will be transparent again

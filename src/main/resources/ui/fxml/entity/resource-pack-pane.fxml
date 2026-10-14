@@ -31,7 +31,7 @@
                        maxWidth="Infinity"/>
 
             <ComboBox fx:id="sortComboBox"
-                      prefWidth="250"
+                      prefWidth="200"
                       maxHeight="Infinity"/>
 
         </HBox>

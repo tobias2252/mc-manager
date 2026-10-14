@@ -2,16 +2,16 @@ package dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ShaderPack;
+import dev.tobiasbieber.mcmanager.domain.enums.sort.ShaderPackSort;
 import dev.tobiasbieber.mcmanager.io.PathManager;
 import dev.tobiasbieber.mcmanager.service.entity.ShaderPackService;
 import dev.tobiasbieber.mcmanager.ui.TaskExecutor;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseController;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseUI;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.dialog.QuestionDialog;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
 import dev.tobiasbieber.mcmanager.ui.view.entity.ShaderPackListView;
 import dev.tobiasbieber.mcmanager.util.FileHelper;
-import dev.tobiasbieber.mcmanager.util.sort.ShaderPackSort;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +32,7 @@ public class ShaderPackPane extends BaseController {
     private ShaderPackService shaderPackService;
 
     // observable list for list view
-    private final ObservableList<ShaderPack> shaderPackList = FXCollections.observableArrayList();
+    private final ObservableList<ShaderPackViewModel> shaderPackList = FXCollections.observableArrayList();
 
     // top
     @FXML
@@ -83,9 +83,12 @@ public class ShaderPackPane extends BaseController {
 
     // load shader packs and store them in the observable list
     private void loadShaderPacksAsync() {
-        Task<Void> shaderPackLoadingTask = TaskExecutor.createTask(shaderPackService::loadShaderPacks);
-        shaderPackLoadingTask.setOnSucceeded(event -> shaderPackList.setAll(shaderPackService.getShaderPacks()));
-        TaskExecutor.runTask(shaderPackLoadingTask, "shaderPackLoadingTask");
+        Task<Void> task = TaskExecutor.createTask(shaderPackService::loadShaderPacks);
+        task.setOnSucceeded(event -> {
+            shaderPackList.clear();
+            shaderPackService.getShaderPacks().forEach(pack -> shaderPackList.add(new ShaderPackViewModel(pack)));
+        });
+        TaskExecutor.runTask(task, "Shader pack loading task");
     }
 
     // sets a filter on the shader pack list view
@@ -93,7 +96,7 @@ public class ShaderPackPane extends BaseController {
     private void createSearchField() {
         PauseTransition pause = new PauseTransition(Duration.millis(250));
         searchField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            pause.setOnFinished(event -> shaderPackListView.filterShaderPackList(newValue));
+            pause.setOnFinished(event -> shaderPackListView.filterList(newValue));
             pause.playFromStart();
         }));
     }
@@ -102,7 +105,7 @@ public class ShaderPackPane extends BaseController {
         sortComboBox.getItems().setAll(ShaderPackSort.values());
         sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null)
-                shaderPackListView.sortShaderPackList(newValue.getComparator());
+                shaderPackListView.sortList(newValue.getComparator());
         });
     }
 
@@ -132,15 +135,15 @@ public class ShaderPackPane extends BaseController {
 
     // confirms the deletion of the selected resource pack and deletes it
     private void deleteSelectedShaderPack() {
-        ShaderPack shaderPack = shaderPackListView.getSelectionModel().getSelectedItem();
-        if (shaderPack != null) {
+        ShaderPackViewModel pack = shaderPackListView.getSelectionModel().getSelectedItem();
+        if (pack != null) {
             String question = langManager.get("dialog.deleteQuestion");
-            String description = langManager.get("dialog.deleteWarning", shaderPack.getName());
+            String description = langManager.get("dialog.deleteWarning", pack.getName());
             boolean result = QuestionDialog.show(question, description, QuestionDialog.AnswerType.DELETE_CANCEL);
 
             if (result) {
-                shaderPackService.deleteShaderPack(shaderPack);
-                shaderPackList.remove(shaderPack); // remove from view
+                shaderPackService.deleteShaderPack(pack.getEntity());
+                shaderPackList.remove(pack); // remove from view
                 shaderPackListView.getSelectionModel().clearSelection();
             }
         }

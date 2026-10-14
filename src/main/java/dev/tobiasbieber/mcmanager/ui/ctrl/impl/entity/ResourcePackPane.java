@@ -2,17 +2,16 @@ package dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ResourcePack;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.World;
+import dev.tobiasbieber.mcmanager.domain.enums.sort.ResourcePackSort;
 import dev.tobiasbieber.mcmanager.io.PathManager;
 import dev.tobiasbieber.mcmanager.service.entity.ResourcePackService;
 import dev.tobiasbieber.mcmanager.ui.TaskExecutor;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseController;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseUI;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.dialog.QuestionDialog;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ResourcePackViewModel;
 import dev.tobiasbieber.mcmanager.ui.view.entity.ResourcePackListView;
 import dev.tobiasbieber.mcmanager.util.FileHelper;
-import dev.tobiasbieber.mcmanager.util.sort.ResourcePackSort;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +32,7 @@ public class ResourcePackPane extends BaseController {
     private ResourcePackService resourcePackService;
 
     // observable list for list view
-    private final ObservableList<ResourcePack> resourcePackList = FXCollections.observableArrayList();
+    private final ObservableList<ResourcePackViewModel> resourcePackList = FXCollections.observableArrayList();
 
     // top
     @FXML
@@ -85,8 +84,11 @@ public class ResourcePackPane extends BaseController {
     // load resource packs and store them in the observable list
     private void loadResourcePacksAsync() {
         Task<Void> resourcePackLoadingTask = TaskExecutor.createTask(resourcePackService::loadResourcePacks);
-        resourcePackLoadingTask.setOnSucceeded(event -> resourcePackList.setAll(resourcePackService.getResourcePacks()));
-        TaskExecutor.runTask(resourcePackLoadingTask, "resourcePackLoadingTask");
+        resourcePackLoadingTask.setOnSucceeded(event -> {
+            resourcePackList.clear();
+            resourcePackService.getResourcePacks().forEach(pack -> resourcePackList.add(new ResourcePackViewModel(pack)));
+        });
+        TaskExecutor.runTask(resourcePackLoadingTask, "Resource pack loading task");
     }
 
     // sets a filter on the resource pack list view
@@ -94,7 +96,7 @@ public class ResourcePackPane extends BaseController {
     private void createSearchField() {
         PauseTransition pause = new PauseTransition(Duration.millis(250));
         searchField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            pause.setOnFinished(event -> resourcePackListView.filterResourcePackList(newValue));
+            pause.setOnFinished(event -> resourcePackListView.filterList(newValue));
             pause.playFromStart();
         }));
     }
@@ -103,7 +105,7 @@ public class ResourcePackPane extends BaseController {
         sortComboBox.getItems().setAll(ResourcePackSort.values());
         sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null)
-                resourcePackListView.sortResourcePackList(newValue.getComparator());
+                resourcePackListView.sortList(newValue.getComparator());
         });
     }
 
@@ -133,15 +135,15 @@ public class ResourcePackPane extends BaseController {
 
     // confirms the deletion of the selected resource pack and deletes it
     private void deleteSelectedResourcePack() {
-        ResourcePack resourcePack = resourcePackListView.getSelectionModel().getSelectedItem();
-        if (resourcePack != null) {
+        ResourcePackViewModel pack = resourcePackListView.getSelectionModel().getSelectedItem();
+        if (pack != null) {
             String question = langManager.get("dialog.deleteQuestion");
-            String description = langManager.get("dialog.deleteWarning", resourcePack.getName());
+            String description = langManager.get("dialog.deleteWarning", pack.getName());
             boolean result = QuestionDialog.show(question, description, QuestionDialog.AnswerType.DELETE_CANCEL);
 
             if (result) {
-                resourcePackService.deleteResourcePack(resourcePack);
-                resourcePackList.remove(resourcePack); // remove from view
+                resourcePackService.deleteResourcePack(pack.getEntity());
+                resourcePackList.remove(pack); // remove from view
                 resourcePackListView.getSelectionModel().clearSelection();
             }
         }

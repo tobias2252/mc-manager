@@ -2,7 +2,7 @@ package dev.tobiasbieber.mcmanager.ui.view.entity;
 
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.core.LangManager;
-import dev.tobiasbieber.mcmanager.domain.entity.impl.ShaderPack;
+import dev.tobiasbieber.mcmanager.ui.model.impl.ShaderPackViewModel;
 import dev.tobiasbieber.mcmanager.util.FilterHelper;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,10 +12,10 @@ import javafx.scene.control.ListView;
 
 import java.util.Comparator;
 
-public class ShaderPackListView extends ListView<ShaderPack> {
+public class ShaderPackListView extends ListView<ShaderPackViewModel> {
 
-    private FilteredList<ShaderPack> filteredList;
-    private SortedList<ShaderPack> sortedList;
+    private FilteredList<ShaderPackViewModel> filteredList;
+    private SortedList<ShaderPackViewModel> sortedList;
 
     public ShaderPackListView() {
         LangManager langManager = AppContext.getInstance().getLangManager();
@@ -28,13 +28,13 @@ public class ShaderPackListView extends ListView<ShaderPack> {
         setCellFactory(cell -> new ShaderPackListCell());
     }
 
-    public void setShaderPackList(ObservableList<ShaderPack> shaderPackList) {
-        filteredList = new FilteredList<>(shaderPackList, pack -> true);
+    public void setShaderPackList(ObservableList<ShaderPackViewModel> list) {
+        filteredList = new FilteredList<>(list, pack -> true);
         sortedList = new SortedList<>(filteredList);
         setItems(sortedList);
     }
 
-    public void filterShaderPackList(String filter) {
+    public void filterList(String filter) {
         if (filteredList != null) {
             filteredList.setPredicate(pack -> {
                 String text = pack.getFilterText();
@@ -43,7 +43,7 @@ public class ShaderPackListView extends ListView<ShaderPack> {
         }
     }
 
-    public void sortShaderPackList(Comparator<ShaderPack> comparator) {
+    public void sortList(Comparator<ShaderPackViewModel> comparator) {
         if (sortedList != null) {
             sortedList.setComparator(comparator);
         }
