@@ -35,6 +35,10 @@
     -fx-font-family: "Minecraftia";
 }
 
+.app-title-text {
+    -fx-font-size: 24;
+}
+
 .title-text {
     -fx-font-size: 18;
 }
@@ -70,6 +74,28 @@
 }
 
 .button:pressed {
+    -fx-background-color: -fx-ctrl-action;
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.primary-button {
+    -fx-background-color: -fx-primary-default;
+    -fx-background-radius: 0;
+
+    -fx-border-color: -fx-primary-highlight;
+    -fx-border-radius: 0;
+    -fx-border-width: 2;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-fg-default;
+}
+
+.primary-button:hover {
+    -fx-border-color: -fx-ctrl-focus;
+}
+
+.primary-button:pressed {
     -fx-background-color: -fx-ctrl-action;
     -fx-border-color: -fx-ctrl-focus;
 }

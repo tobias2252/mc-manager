@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="dev.tobiasbieber.mcmanager.ui.ctrl.impl.shared.MenuPane"
@@ -13,6 +14,22 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
+
+    <VBox>
+        <padding>
+            <Insets bottom="20"/>
+        </padding>
+
+        <Label text="%app.title"
+               styleClass="app-title-text, mc-text"
+               maxWidth="Infinity"
+               alignment="CENTER"/>
+
+        <Label text="%app.author"
+               styleClass="muted-text, mc-text"
+               maxWidth="Infinity"
+               alignment="CENTER"/>
+    </VBox>
 
     <ToggleButton fx:id="worldButton"
                   styleClass="primary-toggle-button"
@@ -38,5 +55,12 @@
                   styleClass="primary-toggle-button"
                   text="%menuPane.settingsButton"
                   prefWidth="200"/>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <Button fx:id="quitButton"
+            styleClass="primary-button"
+            text="%text.quit"
+            prefWidth="200"/>
 
 </VBox>

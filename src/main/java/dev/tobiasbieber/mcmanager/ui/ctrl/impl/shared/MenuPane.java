@@ -1,5 +1,6 @@
 package dev.tobiasbieber.mcmanager.ui.ctrl.impl.shared;
 
+import dev.tobiasbieber.mcmanager.Main;
 import dev.tobiasbieber.mcmanager.core.AppContext;
 import dev.tobiasbieber.mcmanager.ui.SceneManager;
 import dev.tobiasbieber.mcmanager.ui.ctrl.BaseController;
@@ -10,6 +11,7 @@ import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.ShaderPackPane;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.entity.WorldPane;
 import dev.tobiasbieber.mcmanager.ui.ctrl.impl.other.SettingsPane;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
@@ -26,6 +28,8 @@ public class MenuPane extends BaseController {
     public ToggleButton shaderPackButton;
     @FXML
     public ToggleButton settingsButton;
+    @FXML
+    public Button quitButton;
 
     @FXML
     private void initialize() {
@@ -51,6 +55,8 @@ public class MenuPane extends BaseController {
             }
             handleSelection((ToggleButton) newValue);
         });
+
+        quitButton.setOnAction(event -> Main.stopApp());
     }
 
     private void handleSelection(ToggleButton button) {
